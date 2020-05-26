@@ -1,5 +1,31 @@
-
 # Handling exceptions:
+# instead of this...
+def divide(divideBy):
+    return 42 / divideBy
+
+print(divide(2))
+print(divide(12))
+print(divide(0))
+print(divide(1))
+
+
+# do this:
+def divideFix(divideBy):
+    try:
+        return 42 / divideBy
+    except ZeroDivisionError:
+        print('Error: Invalid argument.')
+
+print(divideFix(2))
+print(divideFix(12))
+print(divideFix(0))
+print(divideFix(1))
+# output: now instead of crashing on third print, we get "Error: Invalid argument. None"
+
+
+print()
+
+
 try:
     text = input('Enter something --> ')
 except EOFError:
@@ -10,7 +36,6 @@ else:
     print('You entered {}'.format(text))
 
 
-print()
 print()
 
 

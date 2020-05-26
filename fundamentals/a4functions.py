@@ -29,22 +29,22 @@ x = 50
 
 
 # warning: "Shadows name 'x' from outer scope
-def func(x):
+def func1(x):
     print('x is', x)
     x = 2
     print('Changed local x to', x)
 
 
-func(x)
+func1(x)
 print('x is still', x)
 
 
 # use the global statement to assign a value
 # to a name defined at the global scope
-x = 50
+x = 55
 
 
-def func():
+def func2():
     # this has to be in the inner scope:
     global x
 
@@ -53,9 +53,26 @@ def func():
     print('Changed global x to', x)
 
 
-func()
+func2()
 print('Value of x is', x)
 
+# Code in the global scope cannot use any local variables.
+# However, a local scope can access global variables.
+# Code in a function’s local scope cannot use variables in any other local scope.
+# You can use the same name for different variables if they are in different scopes. That is, there can be a local variable named spam and a global variable also named spam.
+
+# Why? memory constraints
+# While using global variables in small programs is fine, it is a bad habit to rely on global variables as your programs get larger and larger.
+
+# If you need to modify a global variable from within a function, use the global statement
+def globalTest():
+	global eggs
+	eggs = 'local but global'
+
+eggs = 'global'
+globalTest()
+print(eggs)
+# output: 'local but global'
 
 # Default values:
 def say(message, times=1):
@@ -70,13 +87,13 @@ print(say('World', 5))
 
 
 # you can manually specify certain parameters but not others, like so:
-def func(a, b=5, c=10):
+def func3(a, b=5, c=10):
     print('a is', a, 'and b is', b, 'and c is', c)
 
 
-func(3, 7)
-func(25, c=24)
-func(c=50, a=100)
+func3(3, 7)
+func3(25, c=24)
+func3(c=50, a=100)
 
 
 # VarArgs (variable number of arguments) parameters
@@ -99,7 +116,7 @@ total(10, 1, 2, 3, 1232, Jack="yo", John=2231, James=1560)
 
 
 # documentation strings:
-def print_max(a, b):
+def print_max2(a, b):
     """Prints the maximum of two numbers.
 
     The two values must be integers."""
@@ -113,14 +130,45 @@ def print_max(a, b):
         print(b, 'is maximum')
 
 
-print_max(3, 5)
-print(print_max.__doc__)
+print_max2(3, 5)
+print(print_max2.__doc__)
 
 # Python treats everything as an object and this includes functions
 
 
+# https://automatetheboringstuff.com/chapter3/
+
+import random
+def getAnswer(answerNumber):
+	if answerNumber == 1:
+		return 'It is certain'
+	elif answerNumber == 2:
+		return 'It is decidedly so'
+	elif answerNumber == 3:
+		return 'Yes'
+	elif answerNumber == 4:
+		return 'Reply hazy try again'
+	elif answerNumber == 5:
+		return 'Ask again later'
+	elif answerNumber == 6:
+		return 'Concentrate and ask again'
+	elif answerNumber == 7:
+		return 'My reply is no'
+	elif answerNumber == 8:
+		return 'Outlook not so good'
+	elif answerNumber == 9:
+		return 'Very doubtful'
+
+r = random.randint(1, 9)
+fortune = getAnswer(r)
+print(fortune)
+
+# Same as
+print(getAnswer(random.randint(1, 9)))
 
 
-
-
-
+# "None" is the equivalent of null/nil in other languages. Functions with no return value actually return None
+# >>> spam = print('Hello!')
+# Hello!
+# >>> None == spam
+# True

@@ -2,7 +2,7 @@
 
 
 def reverse(text):
-    # Items end to start, going back 1 at a time
+    # Flip items end to start, going back 1 at a time
     return text[::-1]
 
 
@@ -85,9 +85,6 @@ f = open(shoplistfile, 'rb')
 storedlist = pickle.load(f)
 print(storedlist)
 f.close()
-
-
-
 
 
 

@@ -1,6 +1,7 @@
 
 
 # https://python.swaroopch.com/basics.html
+# and also some https://automatetheboringstuff.com
 
 myNum = 100
 if myNum > 50:
@@ -37,6 +38,7 @@ print('{name} wrote {code}'.format(name='Grant', code='python-examples'))
 print('a', end='')
 print('b', end=' ')
 print('c', end='')
+# output: "ab c"
 
 
 print('What\'s your name?')
@@ -55,6 +57,12 @@ This is the second sentence.")
 # (Always use raw strings when dealing with regular expressions.)
 print(r"Newlines are indicated by \n")
 
+
+# Think of \ as saying, “This instruction continues on the next line.”
+print('Four score and seven ' + \
+      'years ago...')
+			
+
 # variable types can change:
 age = 20
 print(age)
@@ -62,3 +70,4 @@ age = 'twenty'
 print(age)
 
 # Python will always use indentation for blocks and will never use braces
+

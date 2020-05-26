@@ -2,16 +2,34 @@
 # There are four built-in data structures in Python
 # - list, tuple, dictionary and set.
 
+# List: ordered array of itmes, which can themselves store values of different types
+
 list1 = [1, 2, 'sdf', 5]
 
 list1.remove(1)
 print(list1)
-# result:
+# output:
 # [2, 'sdf', 5]
 list1.append('something')
 print(list1)
-# result:
+# output:
 # [2, 'sdf', 5, 'something']
+
+# Lists can also contain other list values
+spam = [['cat', 'bat'], [10, 20, 30, 40, 50]]
+print(spam[1][4])
+# output: 50
+
+
+# List Concatenation and List Replication
+# >>> [1, 2, 3] + ['A', 'B', 'C']
+# [1, 2, 3, 'A', 'B', 'C']
+# >>> ['X', 'Y', 'Z'] * 3
+# ['X', 'Y', 'Z', 'X', 'Y', 'Z', 'X', 'Y', 'Z']
+# >>> spam = [1, 2, 3]
+# >>> spam = spam + ['A', 'B', 'C']
+# >>> spam
+# [1, 2, 3, 'A', 'B', 'C']
 
 
 # When we use a variable i and assign a value to it,
@@ -28,6 +46,8 @@ def print_shoplist(items):
 shoplist = ['apple', 'mango', 'carrot', 'banana']
 print('\nI have', len(shoplist), 'items to purchase.')
 
+# len() gets the number of values (length) that are in a list value passed into it
+
 # end=' ' allows you to to not end the line with a \n
 print('These items are:', end=' ')
 print_shoplist(shoplist)
@@ -35,21 +55,66 @@ print()
 
 print('The first item I will buy is', shoplist[0])
 olditem = shoplist[0]
-del shoplist[0]
+del shoplist[0] # remove that item from the list
 print('I bought the', olditem)
 print('My shopping list is now', end=' ')
 print_shoplist(shoplist)
 
 # You can grab subsections of lists, tuples, and strings, like so:
 print('\n\nItem 1 to 3 is', shoplist[1:3])
-print('Items 1 to -1 is', shoplist[1:-1])
+print('Items 1 to -1 is', shoplist[1:-1]) # -1 refers to the last index in a list
 print('Items start to end is', shoplist[:])
 print('Items start to end, skipped every other', shoplist[::2])
 
 
+# >>> 'howdy' in ['hello', 'hi', 'howdy', 'heyas']
+# True
+# >>> spam = ['hello', 'hi', 'howdy', 'heyas']
+# >>> 'howdy' not in spam
+# False
+
+# Multiple assignment from a list:
+cat = ['fat', 'orange', 'loud']
+size, color, disposition = cat
+# (The number of variables and the length of the list must be exactly equal, or ValueError)
+
+# swap the values in two variables:
+a, b = 'Alice', 'Bob'
+a, b = b, a
+print(a)
+'Bob'
+
+
+# Comma Code
+def listConcat(list):
+	listString = ''
+	
+	for i in range(len(list)):
+		if (i == len(list)-1):
+			listString += 'and ' + list[i]
+		else:
+			listString += list[i] + ', '
+	
+	return listString
+		
+		
+listConcatExample = ['apples', 'bananas', 'tofu', 'cats']
+listStrings = listConcat(listConcatExample)
+print(listStrings)
+
+
+# Strings and tuples act similarly to lists
+# >>> name = 'Zophie'
+# >>> name[0]
+# 'Z'
+
+# A list value is a mutable data type: It can have values added, removed, or changed. 
+# However, a string or tuple is immutable: It cannot be changed. 
+
+
 # Tuples:
 # They hold together multiple objects, but have less functionality
-# than lists. Immutable, so you can't modify them
+# than lists. Immutable, so you can't modify them.
 
 zoo = ('python', 'elephant', 'penguin')
 print('\nNumber of animals in the zoo is', len(zoo))
@@ -120,7 +185,7 @@ print(myset & myset2)
 
 # References:
 shoplist = ['apple', 'mango', 'carrot', 'banana']
-# mylist is just another name pointing to the same object,
+# mylist is just another name (variable) pointing to the same object,
 # so later they will both be "updated" by just deleting from one
 # this is only an issue for complex objects like lists,
 # not simple objects like ints
@@ -138,7 +203,22 @@ print('\nshoplist is', shoplist)
 print('mylist is', mylist)
 
 
+# copy.copy() creates a second item that can be modified independently of the first but contains the same info
+# >>> import copy
+# >>> spam = ['A', 'B', 'C', 'D']
+# >>> cheese = copy.copy(spam)
+# >>> cheese[1] = 42
+# >>> spam
+# ['A', 'B', 'C', 'D']
+# >>> cheese
+# ['A', 42, 'C', 'D']
+
+# The deepcopy() function will copy these inner lists as well.
+
+
 # More with strings:
 delimiter = ', '
 mylist = ['Brazil', 'Russia', 'India', 'China']
 print(delimiter.join(mylist))
+
+
